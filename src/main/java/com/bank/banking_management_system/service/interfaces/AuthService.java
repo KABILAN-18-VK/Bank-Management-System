@@ -1,5 +1,12 @@
-package com.bank.banking_management_system.service.interfaces;
+package com.bank.service;
 
-public class AuthService {
-    
+import com.bank.dto.LoginRequest;
+import com.bank.dto.LoginResponse;
+import com.bank.dto.RegisterRequest;
+import com.bank.entity.User;
+
+public interface AuthService {
+    LoginResponse register(RegisterRequest registerRequest);
+    LoginResponse login(LoginRequest loginRequest);
+    User getCurrentUser(String username);
 }

@@ -1,55 +1,63 @@
 package com.bank.entity;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false,unique = true)
-    private String emailID;
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
     private String password;
 
-
-    @Column(name = "full_name",nullable = false)
+    @Column(name = "full_name", nullable = false)
     private String fullName;
 
     @Column(nullable = false)
-    private String role;
+    private String role = "ROLE_USER";
 
-    public User(String username, String emailID,String password,String fullName,String role){
-        this.username=username;
-        this.emailID=emailID;
-        this.password=password;
-        this.fullName=fullName;
-        this.role=role;
+    public User() {
     }
 
-    public Long getId(){
+    public User(String username, String email, String password, String fullName, String role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.role = role != null ? role : "ROLE_USER";
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public String getUsername(){
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username){
-        this.username=username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
-        return emailID;
+        return email;
     }
 
-    public void setEmail(String emailID) {
-        this.emailID = emailID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -60,15 +68,7 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getFullName(){
+    public String getFullName() {
         return fullName;
     }
 
@@ -76,4 +76,11 @@ public class User {
         this.fullName = fullName;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
