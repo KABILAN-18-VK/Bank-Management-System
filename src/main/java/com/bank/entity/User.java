@@ -2,18 +2,34 @@ package com.bank.entity;
 import jakarta.persistence.*;
 
 @Entity
-@table(name="user")
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false,unique = true)
     private String username;
+
+    @Column(nullable = false,unique = true)
     private String emailID;
+
+    @Column(nullable = false)
     private String password;
+
+
+    @Column(name = "full_name",nullable = false)
+    private String fullName;
+
+    @Column(nullable = false)
     private String role;
 
-    public user(){
-
+    public User(String username, String emailID,String password,String fullName,String role){
+        this.username=username;
+        this.emailID=emailID;
+        this.password=password;
+        this.fullName=fullName;
+        this.role=role;
     }
 
     public Long getId(){
@@ -51,4 +67,13 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getFullName(){
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
 }
